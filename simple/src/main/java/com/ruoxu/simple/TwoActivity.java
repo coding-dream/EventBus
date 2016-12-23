@@ -16,7 +16,8 @@ public class TwoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_two);
 
-        EventBus.getDefault().notifyDataChange("hellojava","hello");
+        EventBus.getDefault().notifyDataChange("hellojava");
+        EventBus.getDefault().notifyDataChange("hellojava","tag1");
 
 
         button = (Button) findViewById(R.id.btn);

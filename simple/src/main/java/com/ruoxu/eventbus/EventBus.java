@@ -53,6 +53,11 @@ public class EventBus {
         mDispatcher.dispatchEvents(mLocalEvents,event);
     }
 
+
+    public void register(Subscriber subscriber){
+        register(subscriber,EventType.DEFAULT_TAG);
+    }
+
     public void register(Subscriber subscriber,String tag){
         EventType eventType = new EventType(tag);
         CopyOnWriteArrayList<Subscriber> subscribers = mSubcriberMap.get(eventType);
