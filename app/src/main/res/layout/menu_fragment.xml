@@ -1,0 +1,70 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="3dp" >
+
+    <Button
+        android:id="@+id/my_post_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_user" />
+
+    <Button
+        android:id="@+id/my_remove_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/remove_user" />
+
+    <Button
+        android:id="@+id/my_post_async_event_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/post_async" />
+
+    <Button
+        android:id="@+id/my_post_to_supper_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/post_supper" />
+
+    <Button
+        android:id="@+id/my_post_list_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/post_list" />
+
+    <Button
+        android:id="@+id/my_post_to_thread_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/post_to_thread" />
+
+    <Button
+        android:id="@+id/post_primitive_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/post_primitive" />
+
+    <TextView
+        android:id="@+id/click_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/user_click_hint" />
+
+    <TextView
+        android:id="@+id/timer_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp" />
+
+    <Button
+        android:id="@+id/post_sticky_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/post_sticky" />
+
+</LinearLayout>
