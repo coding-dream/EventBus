@@ -26,6 +26,7 @@ package org.simple.eventbus.demo.fragment;
 
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.widget.Adapter;
 
 import org.simple.eventbus.Subscriber;
 import org.simple.eventbus.demo.bean.User;
