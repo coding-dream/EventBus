@@ -8,8 +8,6 @@ import java.util.List;
  */
 public class ObservableImp<T> implements Observable {
 
-    private List<T> datas;
-
     private List<Subscriber> subscribers = new ArrayList<>();
 
     @Override
@@ -31,16 +29,6 @@ public class ObservableImp<T> implements Observable {
             Subscriber subscriber = subscribers.get(i);
             subscriber.receive();
         }
-    }
-
-    @Override
-    public void setDatas(List datas) {
-        this.datas = datas;
-    }
-
-    @Override
-    public List getDatas() {
-        return datas;
     }
 
 

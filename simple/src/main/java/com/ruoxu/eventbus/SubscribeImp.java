@@ -11,9 +11,8 @@ public class SubscribeImp implements Subscriber {
     }
 
     @Override
-    public void receive() {
-        System.out.println(name + ": 收到消息了");
+    public void receive(Object object) {
+        System.out.println(name + ": 收到消息了"+object);
+
     }
-
-
 }

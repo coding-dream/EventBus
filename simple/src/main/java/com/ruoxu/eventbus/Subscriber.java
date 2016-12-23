@@ -7,6 +7,6 @@ package com.ruoxu.eventbus;
 //观察者 Subscriber 或者用 Observer表示
 public interface Subscriber {
 
-    public void receive();
+     void receive(Object object);
 
 }

@@ -15,8 +15,5 @@ public interface Observable<T> {
 
     void notifyDataChange();
 
-    public void setDatas(List<T> datas);
-
-    public List<T> getDatas();
 
 }
