@@ -22,5 +22,34 @@ public class EventType {
     public static final String DEFAULT_TAG = "default_tag";
 
     public String tag = DEFAULT_TAG;
-    public Object event ;
+
+
+
+    //重写hashCode 和 equals 修复 mSubcriberMap.get(new EventType(tag));获取不到的问题
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((tag == null) ? 0 : tag.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        EventType other = (EventType) obj;
+
+        if (tag == null) {
+            if (other.tag != null)
+                return false;
+        } else if (!tag.equals(other.tag))
+            return false;
+        return true;
+    }
+
 }

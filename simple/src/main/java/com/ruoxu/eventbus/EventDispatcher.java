@@ -35,22 +35,12 @@ public class EventDispatcher {
     public void dispatchEvents(ThreadLocal<Queue<EventType>> threadLocal,Object aEvent) {
         Queue<EventType> eventsQueue = threadLocal.get();
         while (eventsQueue.size() > 0) {
-            deliveryEvent(eventsQueue.poll(), aEvent);
+            handleEvent(eventsQueue.poll(), aEvent);//循环处理 每种EventType类型的list
         }
     }
-
-    private void deliveryEvent(EventType type, Object aEvent) {
-        // 如果有缓存则直接从缓存中取
-        List<EventType> eventTypes = getMatchedEventTypes(type, aEvent);
-        // 迭代所有匹配的事件并且分发给订阅者
-        for (EventType eventType : eventTypes) {
-            handleEvent(eventType, aEvent);
-        }
-
-    }
-
 
     private void handleEvent(EventType eventType, Object aEvent) {
+
         List<Subscriber> subscriptions = mSubcriberMap.get(eventType);
 
         for (Subscriber subscriber : subscriptions) {
@@ -58,12 +48,5 @@ public class EventDispatcher {
         }
     }
 
-
-
-
-    private List<EventType> getMatchedEventTypes(EventType type, Object aEvent) {
-
-        return null;
-    }
 
 }

@@ -23,11 +23,11 @@ public class ObservableImp<T> implements Observable {
     }
 
     @Override
-    public void notifyDataChange() {
+    public void notifyDataChange(Object object) {
 
         for(int i=0;i<subscribers.size();i++) {
             Subscriber subscriber = subscribers.get(i);
-            subscriber.receive();
+            subscriber.receive(object);
         }
     }
 

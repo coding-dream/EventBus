@@ -1,17 +1,25 @@
 package com.ruoxu.simple;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
-public class MainActivity extends AppCompatActivity {
+import com.ruoxu.eventbus.EventBus;
+import com.ruoxu.eventbus.Subscriber;
+
+public class MainActivity extends AppCompatActivity implements Subscriber{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        EventBus.getDefault().register(this,"hello");
 
-
+        Intent intent = new Intent();
+        intent.setClass(this, TwoActivity.class);
+        startActivity(intent);
 
 
     }
@@ -20,6 +28,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        EventBus.getDefault().unregister(this);
 
     }
+
+    @Override
+    public void receive(Object object) {
+        Log.d("MainActivity", "收到消息了");
+    }
+
+
+
 }

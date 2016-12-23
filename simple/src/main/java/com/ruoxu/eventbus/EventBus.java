@@ -1,5 +1,8 @@
 package com.ruoxu.eventbus;
 
+import android.util.Log;
+
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentHashMap;
@@ -50,8 +53,57 @@ public class EventBus {
         mDispatcher.dispatchEvents(mLocalEvents,event);
     }
 
-    public void register(){
-        
+    public void register(Subscriber subscriber,String tag){
+        EventType eventType = new EventType(tag);
+        CopyOnWriteArrayList<Subscriber> subscribers = mSubcriberMap.get(eventType);
+        if (subscribers == null) {
+            subscribers = new CopyOnWriteArrayList<>();
+        }
+
+        if (subscribers.contains(subscriber)) {
+            Log.d("EventBus", "已经注册过了该观察者了");
+        } else {
+            subscribers.add(subscriber);
+        }
+
+        mSubcriberMap.put(eventType, subscribers);
+
+    }
+
+    public void unregister(Subscriber subscriber) {
+        if (subscriber == null) {
+            return;
+        }
+        synchronized (this) {
+            Iterator<CopyOnWriteArrayList<Subscriber>> iterator = mSubcriberMap.values().iterator();
+            while (iterator.hasNext()) {
+
+                CopyOnWriteArrayList<Subscriber> subscriptions = iterator.next();
+                if (subscriptions != null) {
+
+                    Iterator<Subscriber> subIterator = subscriptions.iterator();
+                    while (subIterator.hasNext()) {
+                        Subscriber subscription = subIterator.next();
+
+                        if (subscription.equals(subscriber)) {
+                            Log.d("", "### 移除订阅 " + subscriber.getClass().getName());
+                            subscriptions.remove(subscription);
+                        }
+                    }
+
+
+                }
+
+                // 如果针对某个Event的订阅者数量为空了,那么需要从map中清除
+                if (subscriptions == null || subscriptions.size() == 0) {
+                    iterator.remove();
+                }
+
+
+
+            }
+
+        }
 
     }
 

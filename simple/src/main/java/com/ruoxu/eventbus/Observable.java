@@ -13,7 +13,7 @@ public interface Observable<T> {
 
     void unregisterObserver(Subscriber subscriber);
 
-    void notifyDataChange();
+    void notifyDataChange(Object o);
 
 
 }
