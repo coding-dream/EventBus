@@ -54,11 +54,12 @@ public class EventBus {
     }
 
 
-    public void register(Subscriber subscriber){
+    public Subscriber register(Subscriber subscriber){
         register(subscriber,EventType.DEFAULT_TAG);
+        return subscriber;
     }
 
-    public void register(Subscriber subscriber,String tag){
+    public Subscriber register(Subscriber subscriber,String tag){
         EventType eventType = new EventType(tag);
         CopyOnWriteArrayList<Subscriber> subscribers = mSubcriberMap.get(eventType);
         if (subscribers == null) {
@@ -72,7 +73,7 @@ public class EventBus {
         }
 
         mSubcriberMap.put(eventType, subscribers);
-
+        return subscriber;
     }
 
     public void unregister(Subscriber subscriber) {

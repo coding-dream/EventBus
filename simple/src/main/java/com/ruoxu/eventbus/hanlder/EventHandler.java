@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-package org.simple.eventbus.handler;
+package com.ruoxu.eventbus.hanlder;
 
-import org.simple.eventbus.Subscription;
+import com.ruoxu.eventbus.Subscriber;
+
 
 /**
  * 事件处理接口
@@ -30,5 +31,5 @@ public interface EventHandler {
      * @param subscription 订阅对象
      * @param event 待处理的事件
      */
-    void handleEvent(Subscription subscription, Object event);
+    void handleEvent(Subscriber subscription, Object event);
 }

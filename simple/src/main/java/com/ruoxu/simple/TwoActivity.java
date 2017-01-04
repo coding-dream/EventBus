@@ -16,9 +16,8 @@ public class TwoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_two);
 
 
-        EventBus.getDefault().notifyDataChange("hellojava");
-        EventBus.getDefault().notifyDataChange("hellojava","tag1");
+        EventBus.getDefault().notifyDataChange("fucking");
+        EventBus.getDefault().notifyDataChange("hello","tag1");
 
-        EventBus.getDefault().notifyDataChange(null); //事件不能为null
     }
 }

@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package org.simple.eventbus.handler;
+package com.ruoxu.eventbus.hanlder;
 
 import android.os.Handler;
 import android.os.Looper;
 
-import org.simple.eventbus.Subscription;
+import com.ruoxu.eventbus.Subscriber;
 
 /**
  * 事件处理在UI线程,通过Handler将事件处理post到UI线程的消息队列
@@ -28,25 +28,13 @@ import org.simple.eventbus.Subscription;
  */
 public class UIThreadEventHandler implements EventHandler {
 
-    /**
-     * ui handler
-     */
     private Handler mUIHandler = new Handler(Looper.getMainLooper());
-    /**
-     * 
-     */
-    DefaultEventHandler mEventHandler = new DefaultEventHandler();
-
-    /**
-     * @param subscription
-     * @param event
-     */
-    public void handleEvent(final Subscription subscription, final Object event) {
+    public void handleEvent(final Subscriber subscription, final Object event) {
         mUIHandler.post(new Runnable() {
 
             @Override
             public void run() {
-                mEventHandler.handleEvent(subscription, event);
+                subscription.receive(event);
             }
         });
     }

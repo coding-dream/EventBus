@@ -1,5 +1,8 @@
 package com.ruoxu.eventbus;
 
+import com.ruoxu.eventbus.hanlder.EventHandler;
+import com.ruoxu.eventbus.hanlder.UIThreadEventHandler;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
@@ -17,20 +20,8 @@ public class EventDispatcher {
     }
 
 
-//    /**
 //     * 将接收方法执行在UI线程
-//     */
-//    EventHandler mUIThreadEventHandler = new UIThreadEventHandler();
-//
-//    /**
-//     * 哪个线程执行的post,接收方法就执行在哪个线程
-//     */
-//    EventHandler mPostThreadHandler = new DefaultEventHandler();
-//
-//    /**
-//     * 异步线程中执行订阅方法
-//     */
-//    EventHandler mAsyncEventHandler = new AsyncEventHandler();
+    EventHandler mUIThreadEventHandler = new UIThreadEventHandler();
 
     public void dispatchEvents(ThreadLocal<Queue<EventType>> threadLocal,Object aEvent) {
         Queue<EventType> eventsQueue = threadLocal.get();
@@ -44,7 +35,7 @@ public class EventDispatcher {
         List<Subscriber> subscriptions = mSubcriberMap.get(eventType);
 
         for (Subscriber subscriber : subscriptions) {
-            subscriber.receive(aEvent);
+            mUIThreadEventHandler.handleEvent(subscriber,aEvent);
         }
     }
 
